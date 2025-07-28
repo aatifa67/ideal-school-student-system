@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>All Students</title></head>
+<body>
+<h2>All Students</h2>
+<a href="/add">Add Student</a>
+<table border="1">
+    <tr><th>ID</th><th>Name</th><th>Roll</th><th>Standard</th><th>Email</th><th>Actions</th></tr>
+    <tr th:each="s : ${students}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.rollNumber}"></td>
+        <td th:text="${s.standard}"></td>
+        <td th:text="${s.email}"></td>
+        <td>
+            <a th:href="@{'/edit/' + ${s.id}}">Edit</a> |
+            <a th:href="@{'/delete/' + ${s.id}}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

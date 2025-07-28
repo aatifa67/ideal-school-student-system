@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Edit Student</title></head>
+<body>
+<h2>Edit Student</h2>
+<form action="/update" method="post" th:object="${student}">
+    Name: <input type="text" th:field="*{name}"><br>
+    Roll: <input type="text" th:field="*{rollNumber}"><br>
+    Standard: <input type="text" th:field="*{standard}"><br>
+    Email: <input type="email" th:field="*{email}"><br>
+    <input type="submit" value="Save">
+</form>
+</body>
+</html>
