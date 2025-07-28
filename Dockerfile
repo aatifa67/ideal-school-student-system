@@ -1,6 +1,12 @@
-FROM eclipse-temurin:11-jdk
+# Use Maven base image to build the project
+FROM maven:3.9.4-eclipse-temurin-17 AS build
 WORKDIR /app
-COPY . /app
-RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
+COPY . .
+RUN mvn clean package -DskipTests
+
+# Use lightweight JDK image to run the app
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-CMD ["java", "-jar", "target/student-management-1.0.0.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
